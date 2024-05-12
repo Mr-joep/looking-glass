@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Network Tools</title>
+</head>
+<body>
+    <h1>Network Tools</h1>
+    <form action="/result" method="post">
+        <label for="option">Choose an option:</label>
+        <select name="option" id="option">
+            <option value="ping">Ping</option>
+            <option value="tracert">Traceroute</option>
+        </select><br><br>
+        <label for="ip_address">Enter IP Address:</label>
+        <input type="text" name="ip_address" id="ip_address" required><br><br>
+        <input type="submit" value="Start">
+    </form>
+</body>
+</html>
