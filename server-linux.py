@@ -13,12 +13,15 @@ def result():
         ip_address = request.form['ip_address']
         option = request.form['option']
         if option == 'ping':
-            result = subprocess.run(['ping', '-c', '4', ip_address], capture_output=True, text=True)
+            result = subprocess.Popen(['ping', '-c', '4', ip_address], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            output, _ = result.communicate()
         elif option == 'tracert':
-            result = subprocess.run(['tracert', ip_address], capture_output=True, text=True, shell=True)
+            result = subprocess.Popen(['traceroute', ip_address], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            output, _ = result.communicate()
         else:
             result = "Invalid option selected."
-        return render_template('result.html', result=result.stdout)
+            output = ""
+        return render_template('result.html', result=output)
 
 if __name__ == '__main__':
     app.run(debug=True)
